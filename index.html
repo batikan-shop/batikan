@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BatikCraft - Authentic Indonesian Batik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #CD853F;
+            --light: #F5DEB3;
+            --dark: #5D2906;
+            --text: #333333;
+            --background: #FFF8ED;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            background-color: var(--primary);
+            padding: 12px 0;
+        }
+
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(139, 69, 19, 0.7), rgba(139, 69, 19, 0.7)), url('https://placehold.co/1200x400/F5DEB3/8B4513?text=Batik+Art') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 2px solid var(--accent);
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--dark);
+        }
+
+        .bookmark {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .bookmark.bookmarked {
+            color: var(--secondary);
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* About Page */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .member-photo {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info, .message-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Cart Page */
+        .cart-items {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: var(--light);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-summary {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .summary-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        /* Admin Page */
+        .admin-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .admin-section h3 {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .message-list, .bookmark-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .message-item, .bookmark-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .message-item:last-child, .bookmark-item:last-child {
+            border-bottom: none;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .message-name {
+            font-weight: 600;
+        }
+
+        .message-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: block;
+            }
+
+            .nav-menu ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 20px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo">Batik<span>Craft</span></a>
+                <div class="nav-icons">
+                    <div class="nav-icon" id="searchIcon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="nav-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="nav-icon" id="bookmarkIcon">
+                        <i class="fas fa-bookmark"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-menu" id="navMenu">
+            <div class="container">
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="products">Products</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    <li><a href="#" class="nav-link" data-page="admin">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover the Art of Batik</h1>
+                <p>Authentic Indonesian batik crafted with traditional techniques and modern elegance</p>
+                <a href="#" class="btn nav-link" data-page="products">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <section id="homePage" class="page active">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Featured Products</h2>
+                </div>
+                <div class="product-grid" id="featuredProducts">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Page -->
+        <section id="productsPage" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Batik Collection</h2>
+                </div>
+                <div class="category-filter">
+                    <button class="filter-btn active" data-category="all">All Products</button>
+                    <button class="filter-btn" data-category="clothing">Clothing</button>
+                    <button class="filter-btn" data-category="accessories">Accessories</button>
+                    <button class="filter-btn" data-category="home">Home Decor</button>
+                </div>
+                <div class="product-grid" id="productGrid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="aboutPage" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Team</h2>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://placehold.co/300x300/D2691E/FFFFFF?text=Adi" alt="Adi" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">Michael Andreas</h3>
+                            <p class="member-role">Founder & CEO Group</p>
+                            <p>NPM 202243501379.</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://placehold.co/300x300/D2691E/FFFFFF?text=Aki" alt="Aki" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">Ali Firdaus</h3>
+                            <p class="member-role">Team Member</p>
+                            <p>NPM 202243501363.</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://placehold.co/300x300/D2691E/FFFFFF?text=Ani" alt="Ani" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">Yaumil Gattan</h3>
+                            <p class="member-role">Team Member</p>
+                            <p> NPM 202243501386.</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://placehold.co/300x300/D2691E/FFFFFF?text=Ayi" alt="Ayi" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">Hezkiel Tri Moza</h3>
+                            <p class="member-role">Team Member</p>
+                            <p>NPM 202243501356.</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://placehold.co/300x300/D2691E/FFFFFF?text=Azi" alt="Azi" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">Endan Suhendar</h3>
+                            <p class="member-role">Team Member</p>
+                            <p>NPM 202243501342.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contactPage" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Jalan Kebenaran, Jakarta, Indonesia 10000</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+62 274 123 4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@batikcraft.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Opening Hours</h4>
+                                <p>Monday - Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM</p>
+                            </div>
+                        </div>
+                        <h4 style="margin-top: 30px;">Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href=""https://www.twitter.com" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.pinterest.com" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                    <div class="message-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cartPage" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Your Shopping Cart</h2>
+                </div>
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span>$10.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="total">$10.00</span>
+                    </div>
+                    <button class="btn" style="width: 100%; margin-top: 20px;">Proceed to Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bookmarks Page -->
+        <section id="bookmarksPage" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Your Wishlist</h2>
+                </div>
+                <div class="product-grid" id="bookmarksGrid">
+                    <!-- Bookmarked products will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Page -->
+        <section id="adminPage" class="page">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Admin Dashboard</h2>
+                </div>
+                <div class="admin-section">
+                    <h3>Customer Messages</h3>
+                    <div class="message-list" id="messageList">
+                        <!-- Messages will be loaded here -->
+                    </div>
+                </div>
+                <div class="admin-section">
+                    <h3>Bookmarked Orders</h3>
+                    <div class="bookmark-list" id="bookmarkList">
+                        <!-- Bookmarks will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BatikCraft</h3>
+                    <p>Preserving the ancient art of batik through authentic craftsmanship and contemporary design.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="products">Products</a></li>
+                        <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Clothing</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Home Decor</a></li>
+                        <li><a href="#">Special Collections</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                        <li><i class="fas fa-phone"></i> +62 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@batikcraft.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BatikCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Traditional Sarong",
+                category: "clothing",
+                price: 45.99,
+                image: "https://placehold.co/300x300/8B4513/FFFFFF?text=Sarong"
+            },
+            {
+                id: 2,
+                name: "Batik Scarf",
+                category: "accessories",
+                price: 22.50,
+                image: "https://placehold.co/300x300/D2691E/FFFFFF?text=Scarf"
+            },
+            {
+                id: 3,
+                name: "Decorative Wall Hanging",
+                category: "home",
+                price: 35.00,
+                image: "https://placehold.co/300x300/CD853F/FFFFFF?text=Wall+Hanging"
+            },
+            {
+                id: 4,
+                name: "Batik Shirt",
+                category: "clothing",
+                price: 55.00,
+                image: "https://placehold.co/300x300/A0522D/FFFFFF?text=Shirt"
+            },
+            {
+                id: 5,
+                name: "Handbag Set",
+                category: "accessories",
+                price: 65.99,
+                image: "https://placehold.co/300x300/8B4513/FFFFFF?text=Handbag"
+            },
+            {
+                id: 6,
+                name: "Table Runner",
+                category: "home",
+                price: 28.75,
+                image: "https://placehold.co/300x300/D2691E/FFFFFF?text=Table+Runner"
+            },
+            {
+                id: 7,
+                name: "Batik Dress",
+                category: "clothing",
+                price: 75.00,
+                image: "https://placehold.co/300x300/CD853F/FFFFFF?text=Dress"
+            },
+            {
+                id: 8,
+                name: "Cushion Covers",
+                category: "home",
+                price: 19.99,
+                image: "https://placehold.co/300x300/A0522D/FFFFFF?text=Cushions"
+            }
+        ];
+
+        // DOM Elements
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cartCount = document.querySelector('.cart-count');
+        const bookmarkCount = document.querySelectorAll('.cart-count')[1];
+        const contactForm = document.getElementById('contactForm');
+
+        // State
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+        let messages = JSON.parse(localStorage.getItem('messages')) || [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            updateCartCount();
+            updateBookmarkCount();
+            renderMessages();
+            renderBookmarks();
+
+            // Load featured products
+            const featuredProducts = document.getElementById('featuredProducts');
+            if (featuredProducts) {
+                const featured = products.slice(0, 4);
+                featuredProducts.innerHTML = generateProductHTML(featured);
+            }
+        });
+
+        // Event Listeners
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.getAttribute('data-page');
+                showPage(page);
+            });
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                const category = this.getAttribute('data-category');
+                filterProducts(category);
+            });
+        });
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const newMessage = {
+                id: Date.now(),
+                name,
+                email,
+                subject,
+                message,
+                date: new Date().toLocaleString()
+            };
+            
+            messages.push(newMessage);
+            localStorage.setItem('messages', JSON.stringify(messages));
+            
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+            renderMessages();
+        });
+
+        // Functions
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageName + 'Page').classList.add('active');
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-page') === pageName) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Close mobile menu
+            navMenu.classList.remove('active');
+            
+            // Render specific content for pages
+            if (pageName === 'products') {
+                renderProducts();
+            } else if (pageName === 'cart') {
+                renderCart();
+            } else if (pageName === 'bookmarks') {
+                renderBookmarkedProducts();
+            }
+        }
+
+        function renderProducts(productsToShow = products) {
+            const productGrid = document.getElementById('productGrid');
+            if (productGrid) {
+                productGrid.innerHTML = generateProductHTML(productsToShow);
+                attachProductEventListeners();
+            }
+        }
+
+        function generateProductHTML(productsArray) {
+            return productsArray.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                            <button class="bookmark ${isBookmarked(product.id) ? 'bookmarked' : ''}" data-id="${product.id}">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function attachProductEventListeners() {
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+
+            document.querySelectorAll('.bookmark').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    toggleBookmark(productId);
+                });
+            });
+        }
+
+        function filterProducts(category) {
+            if (category === 'all') {
+                renderProducts();
+            } else {
+                const filtered = products.filter(product => product.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${product.name} added to cart!`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            renderCart();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                }
+            }
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+        }
+
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                subtotalElement.textContent = '$0.00';
+                totalElement.textContent = '$10.00';
+                return;
+            }
+            
+            let subtotal = 0;
+            
+            cartItems.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                return `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">${item.name}</h3>
+                            <p class="cart-item-price">$${item.price.toFixed(2)} each</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            </div>
+                            <button class="remove-item" data-id="${item.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            const total = subtotal + 10; // Shipping cost
+            
+            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+            totalElement.textContent = `$${total.toFixed(2)}`;
+            
+            // Attach event listeners for cart actions
+            document.querySelectorAll('.minus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    updateQuantity(productId, -1);
+                });
+            });
+            
+            document.querySelectorAll('.plus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    updateQuantity(productId, 1);
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(productId);
+                });
+            });
+        }
+
+        function toggleBookmark(productId) {
+            const index = bookmarks.indexOf(productId);
+            const button = document.querySelector(`.bookmark[data-id="${productId}"]`);
+            
+            if (index > -1) {
+                bookmarks.splice(index, 1);
+                button.classList.remove('bookmarked');
+            } else {
+                bookmarks.push(productId);
+                button.classList.add('bookmarked');
+            }
+            
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+            updateBookmarkCount();
+        }
+
+        function isBookmarked(productId) {
+            return bookmarks.includes(productId);
+        }
+
+        function updateBookmarkCount() {
+            const count = bookmarks.length;
+            bookmarkCount.textContent = count;
+        }
+
+        function renderBookmarkedProducts() {
+            const bookmarksGrid = document.getElementById('bookmarksGrid');
+            if (bookmarksGrid) {
+                const bookmarkedProducts = products.filter(product => bookmarks.includes(product.id));
+                if (bookmarkedProducts.length === 0) {
+                    bookmarksGrid.innerHTML = '<p>No items in your wishlist</p>';
+                } else {
+                    bookmarksGrid.innerHTML = generateProductHTML(bookmarkedProducts);
+                    attachProductEventListeners();
+                }
+            }
+        }
+
+        function renderMessages() {
+            const messageList = document.getElementById('messageList');
+            if (messageList) {
+                if (messages.length === 0) {
+                    messageList.innerHTML = '<p>No messages yet</p>';
+                } else {
+                    messageList.innerHTML = messages.map(message => `
+                        <div class="message-item">
+                            <div class="message-header">
+                                <span class="message-name">${message.name}</span>
+                                <span class="message-date">${message.date}</span>
+                            </div>
+                            <p><strong>${message.subject}</strong></p>
+                            <p>${message.message}</p>
+                            <p><small>${message.email}</small></p>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        function renderBookmarks() {
+            const bookmarkList = document.getElementById('bookmarkList');
+            if (bookmarkList) {
+                if (bookmarks.length === 0) {
+                    bookmarkList.innerHTML = '<p>No bookmarks yet</p>';
+                } else {
+                    const bookmarkedProducts = products.filter(product => bookmarks.includes(product.id));
+                    bookmarkList.innerHTML = bookmarkedProducts.map(product => `
+                        <div class="bookmark-item">
+                            <p><strong>${product.name}</strong> - $${product.price.toFixed(2)}</p>
+                            <p>Category: ${product.category}</p>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
