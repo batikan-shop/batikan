@@ -683,7 +683,26 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
+		.currency-converter {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.currency-converter select {
+    border: 1px solid var(--accent);
+    background-color: white;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.currency-converter select:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+</style>
 </head>
 <body>
     <!-- Header -->
@@ -705,14 +724,17 @@
     <input type="text" id="searchInput" placeholder="Search products..."
            style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:5px;">
 </div>
-
+				<select id="langSelect">
+  <option value="en">EN</option>
+  <option value="id">ID</option>
+</select>
                     <div class="nav-icon" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
+                        <span class="cart-count cart-count--cart">0</span>
                     </div>
                     <div class="nav-icon" id="bookmarkIcon">
                         <i class="fas fa-bookmark"></i>
-                        <span class="cart-count">0</span>
+                        <span class="cart-count cart-count--bookmark">0</span>
                     </div>
                     <div class="hamburger" id="hamburger">
                         <span></span>
@@ -725,34 +747,26 @@
         <nav class="nav-menu" id="navMenu">
             <div class="container">
                 <ul>
-                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
-                    <li><a href="#" class="nav-link" data-page="products">Products</a></li>
-                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
-                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-                    <li><a href="#" class="nav-link" data-page="admin">Admin</a></li>
+                    <li><a class="nav-link" data-page="home" href="#"><span class="lang-en">Home</span><span class="lang-id">Beranda</span></a></li>
+                    <li><a class="nav-link" data-page="products" href="#"><span class="lang-en">Products</span><span class="lang-id">Produk</span></a></li>
+                <li><a class="nav-link" data-page="about" href="#"><span class="lang-en">About</span><span class="lang-id">Tentang</span></a></li>
+                <li><a class="nav-link" data-page="contact" href="#"><span class="lang-en">Contact</span><span class="lang-id">Kontak</span></a></li>
+                <li><a class="nav-link" data-page="admin" href="#"><span class="lang-en">Admin</span><span class="lang-id">Admin</span></a></li>
                 </ul>
             </div>
         </nav>
     </header>
 	<!-- Search Bar -->
-<div id="searchBar" style="
-    display:none;
-    background:white;
-    padding:15px 20px;
-    border-bottom:1px solid #ddd;
-">
-    <input type="text" id="searchInput" placeholder="Search products..."
-           style="width:100%; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:5px;">
-</div>
+
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Discover the Art of Batik</h1>
-                <p>Authentic Indonesian batik crafted with traditional techniques and modern elegance</p>
-                <a href="#" class="btn nav-link" data-page="products">Shop Now</a>
-            </div>
+            <h1><span class="lang-en">Discover the Art of Batik</span><span class="lang-id">Temukan Seni Batik</span></h1>
+            <p><span class="lang-en">Authentic Indonesian batik crafted with traditional techniques and modern elegance</span><span class="lang-id">Batik Indonesia asli yang dibuat dengan teknik tradisional dan elegan modern</span></p>
+            <a class="btn nav-link" data-page="products" href="#"><span class="lang-en">Shop Now</span><span class="lang-id">Belanja Sekarang</span></a>
+        </div>
         </div>
     </section>
 
@@ -762,7 +776,7 @@
         <section id="homePage" class="page active">
             <div class="container">
                 <div class="section-title">
-                    <h2>Featured Products</h2>
+                    <h2><span class="lang-en">Featured Products</span><span class="lang-id">Produk Unggulan</span></h2>
                 </div>
                 <div class="product-grid" id="featuredProducts">
                     <!-- Products will be loaded here -->
@@ -774,13 +788,13 @@
         <section id="productsPage" class="page">
             <div class="container">
                 <div class="section-title">
-                    <h2>Our Batik Collection</h2>
+                    <h2><span class="lang-en">Our Batik Collection</span><span class="lang-id">Koleksi Batik Kami</span></h2>
                 </div>
                 <div class="category-filter">
-                    <button class="filter-btn active" data-category="all">All Products</button>
-                    <button class="filter-btn" data-category="clothing">Clothing</button>
-                    <button class="filter-btn" data-category="accessories">Accessories</button>
-                    <button class="filter-btn" data-category="home">Home Decor</button>
+                    <button class="filter-btn active" data-category="all"><span class="lang-en">All Products</span><span class="lang-id">Semua Produk</span></button>
+					<button class="filter-btn" data-category="clothing"><span class="lang-en">Clothing</span><span class="lang-id">Pakaian</span></button>
+					<button class="filter-btn" data-category="accessories"><span class="lang-en">Accessories</span><span class="lang-id">Aksesoris</span></button>
+					<button class="filter-btn" data-category="home"><span class="lang-en">Home Decor</span><span class="lang-id">Dekorasi Rumah</span></button>
                 </div>
                 <div class="product-grid" id="productGrid">
                     <!-- Products will be loaded here -->
@@ -792,14 +806,17 @@
         <section id="aboutPage" class="page">
             <div class="container">
                 <div class="section-title">
-                    <h2>Our Team</h2>
+                    <h2><span class="lang-en">Our Team</span><span class="lang-id">Tim Kami</span></h2>
                 </div>
+		<div class="section-title">
+		<p><span class="lang-en">Our Story</span><span class="lang-id">Cerita tentang kita</span></p>
+		</div>
                 <div class="team-grid">
                     <div class="team-member">
                         <img src="img/member/mk.webp" alt="Michael" class="member-photo">
                         <div class="member-info">
                             <h3 class="member-name">Michael Andreas</h3>
-                            <p class="member-role">Founder & CEO Group</p>
+                            <p class="member-role"><span class="lang-en">Founder & CEO Group</span><span class="lang-id">Pendiri & CEO Grup</span></p>
                             <p>NPM 202243501379.</p>
                         </div>
                     </div>
@@ -835,301 +852,974 @@
                             <p>NPM 202243501342.</p>
                         </div>
                     </div>
+					<div class="team-member">
+                        <img src="img/member/ag.webp" alt="Agam" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">Agam Pratama Wijaya</h3>
+                            <p class="member-role">OB</p>
+                            <p>NPM 202243501343.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Page -->
-        <section id="contactPage" class="page">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Contact Us</h2>
+        <section class="page" id="contactPage">
+        <div class="container">
+            <div class="section-title">
+                <h2><span class="lang-en">Contact Us</span><span class="lang-id">Hubungi Kami</span></h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3><span class="lang-en">Get In Touch</span><span class="lang-id">Hubungi Kami</span></h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4><span class="lang-en">Address</span><span class="lang-id">Alamat</span></h4>
+                            <p><span class="lang-en">123 Jalan Kebenaran, Jakarta, Indonesia 10000</span><span class="lang-id">123 Jalan Kebenaran, Jakarta, Indonesia 10000</span></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4><span class="lang-en">Phone</span><span class="lang-id">Telepon</span></h4>
+                            <p><span class="lang-en">+62 274 123 4567</span><span class="lang-id">+62 274 123 4567</span></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4><span class="lang-en">Email</span><span class="lang-id">Surel</span></h4>
+                            <p><span class="lang-en">info@batikcraft.com</span><span class="lang-id">info@batikcraft.com</span></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4><span class="lang-en">Opening Hours</span><span class="lang-id">Jam Buka</span></h4>
+                            <p><span class="lang-en">Monday - Friday: 9AM - 6PM<br/>Saturday: 10AM - 4PM</span><span class="lang-id">Senin - Jumat: 9AM - 6PM<br/>Sabtu: 10AM - 4PM</span></p>
+                        </div>
+                    </div>
+                    <h4 style="margin-top: 30px;"><span class="lang-en">Follow Us</span><span class="lang-id">Ikuti Kami</span></h4>
+                    <div class="social-icons">
+                        <a class="social-icon" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="social-icon" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a class="social-icon" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="social-icon" href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
+                    </div>
                 </div>
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <h3>Get In Touch</h3>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Address</h4>
-                                <p>123 Jalan Kebenaran, Jakarta, Indonesia 10000</p>
-                            </div>
+                <div class="message-form">
+                    <h3><span class="lang-en">Send Us a Message</span><span class="lang-id">Kirim Pesan</span></h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name"><span class="lang-en">Name</span><span class="lang-id">Nama</span></label>
+                            <input id="name" required="" type="text"/>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+62 274 123 4567</p>
-                            </div>
+                        <div class="form-group">
+                            <label for="email"><span class="lang-en">Email</span><span class="lang-id">Surel</span></label>
+                            <input id="email" required="" type="email"/>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>info@batikcraft.com</p>
-                            </div>
+                        <div class="form-group">
+                            <label for="subject"><span class="lang-en">Subject</span><span class="lang-id">Subjek</span></label>
+                            <input id="subject" required="" type="text"/>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h4>Opening Hours</h4>
-                                <p>Monday - Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM</p>
-                            </div>
+                        <div class="form-group">
+                            <label for="message"><span class="lang-en">Message</span><span class="lang-id">Pesan</span></label>
+                            <textarea id="message" required=""></textarea>
                         </div>
-                        <h4 style="margin-top: 30px;">Follow Us</h4>
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://www.instagram.com/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href=""https://www.twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.pinterest.com" class="social-icon" target="_blank"><i class="fab fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                    <div class="message-form">
-                        <h3>Send Us a Message</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" required></textarea>
-                            </div>
-                            <button type="submit" class="btn">Send Message</button>
-                        </form>
-                    </div>
+                        <button class="btn" type="submit"><span class="lang-en">Send Message</span><span class="lang-id">Kirim Pesan</span></button>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
 
         <!-- Cart Page -->
-        <section id="cartPage" class="page">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Your Shopping Cart</h2>
-                </div>
-                <div class="cart-items" id="cartItems">
-                    <!-- Cart items will be loaded here -->
-                </div>
-                <div class="cart-summary">
-                    <div class="summary-row">
-                        <span>Subtotal:</span>
-                        <span id="subtotal">$0.00</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Shipping:</span>
-                        <span>$10.00</span>
-                    </div>
-                    <div class="summary-row summary-total">
-                        <span>Total:</span>
-                        <span id="total">$10.00</span>
-                    </div>
-                    <button class="btn" style="width: 100%; margin-top: 20px;">Proceed to Checkout</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bookmarks Page -->
-        <section id="bookmarksPage" class="page">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Your Wishlist</h2>
-                </div>
-                <div class="product-grid" id="bookmarksGrid">
-                    <!-- Bookmarked products will be loaded here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Admin Page -->
-        <section id="adminPage" class="page">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Admin Dashboard</h2>
-                </div>
-                <div class="admin-section">
-                    <h3>Customer Messages</h3>
-                    <div class="message-list" id="messageList">
-                        <!-- Messages will be loaded here -->
-                    </div>
-                </div>
-                <div class="admin-section">
-                    <h3>Bookmarked Orders</h3>
-                    <div class="bookmark-list" id="bookmarkList">
-                        <!-- Bookmarks will be loaded here -->
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
+		
+        <!-- Cart Page -->
+<section class="page" id="cartPage">
     <div class="container">
-        <div class="footer-content">
-
-            <div class="footer-column">
-                <h3>BatikCraft</h3>
-                <p>Preserving the ancient art of batik through authentic craftsmanship and contemporary design.</p>
+        <div class="section-title">
+            <h2><span class="lang-en">Your Shopping Cart</span><span class="lang-id">Keranjang Belanja</span></h2>
+        </div>
+        
+        <!-- Currency Converter -->
+        <div class="currency-converter" style="margin-bottom: 20px; text-align: right;">
+            <label for="currencySelect" style="margin-right: 10px;">
+                <span class="lang-en">Currency:</span>
+                <span class="lang-id">Mata Uang:</span>
+            </label>
+            <select id="currencySelect" style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd;">
+                <option value="USD">USD ($)</option>
+                <option value="IDR">IDR (Rp)</option>
+            </select>
+            <div id="exchangeRate" style="font-size: 0.8rem; color: #666; margin-top: 5px;">
+                <span class="lang-en">Exchange rate: 1 USD = 15,000 IDR</span>
+                <span class="lang-id">Kurs: 1 USD = 15.000 IDR</span>
             </div>
-
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
-                    <li><a href="#" class="nav-link" data-page="products">Products</a></li>
-                    <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
-                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-                </ul>
-            </div> <!-- ✔ BENAR -->
-
-            <div class="footer-column">
-                <h3>Categories</h3>
-                <ul class="footer-links">
-                    <li><a href="#" class="nav-link footer-filter" data-page="products" data-category="clothing">Clothing</a></li>
-                    <li><a href="#" class="nav-link footer-filter" data-page="products" data-category="accessories">Accessories</a></li>
-                    <li><a href="#" class="nav-link footer-filter" data-page="products" data-category="home">Home Decor</a></li>
-                    <li><a href="#" class="nav-link footer-filter" data-page="products" data-category="special">Special Collections</a></li>
-                </ul>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span><span class="lang-en">Subtotal:</span><span class="lang-id">Subtotal:</span></span>
+                <span id="subtotal">$0.00</span>
             </div>
-
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
-                        <li><i class="fas fa-phone"></i><a href="https://web.whatsapp.com/"> +62 123 456 7890</a></li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:info@batikcraft.com">info@batikcraft.com</a></li>
-                    </ul>
+            <div class="summary-row">
+                <span><span class="lang-en">Shipping:</span><span class="lang-id">Pengiriman:</span></span>
+                <span id="shipping">$10.00</span>
             </div>
+            <div class="summary-row summary-total">
+                <span><span class="lang-en">Total:</span><span class="lang-id">Total:</span></span>
+                <span id="total">$10.00</span>
+            </div>
+            <button id="checkoutBtn" class="btn" style="width: 100%; margin-top: 20px;">
+    <span class="lang-en">Proceed to Checkout</span>
+    <span class="lang-id">Lanjutkan ke Pembayaran</span>
+</button>
 
         </div>
+    </div>
+</section>
 
+    <!-- Bookmarks Page -->
+    <section class="page" id="bookmarksPage">
+        <div class="container">
+            <div class="section-title">
+                <h2><span class="lang-en">Your Wishlist</span><span class="lang-id">Daftar Keinginan</span></h2>
+            </div>
+            <div class="product-grid" id="bookmarksGrid">
+                <!-- Bookmarked products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Page: menampilkan pilihan pembayaran -->
+<!-- Checkout Page -->
+<section class="page" id="checkOut" style="padding: 20px;">
+    <div class="container" style="max-width: 600px; margin: auto;">
+
+        <!-- Title -->
+        <h2 style="font-size: 24px; margin-bottom: 10px;">
+            <span class="lang-en">Checkout</span>
+            <span class="lang-id">Pembayaran</span>
+        </h2>
+
+        <p style="margin-bottom: 20px; color: #555;">
+            <span class="lang-en">Fill in your details below</span>
+            <span class="lang-id">Isi detail Anda di bawah ini</span>
+        </p>
+
+        <!-- Full Name -->
+        <label style="font-weight: bold;">
+            <span class="lang-en">Full Name</span>
+            <span class="lang-id">Nama Lengkap</span>
+        </label>
+        <input type="text" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;" />
+
+        <!-- Address -->
+        <label style="font-weight: bold; margin-top: 10px;">
+            <span class="lang-en">Address</span>
+            <span class="lang-id">Alamat</span>
+        </label>
+        <input type="text" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;" />
+
+        <!-- Payment Method Title -->
+        <h3 style="margin-top: 25px; margin-bottom: 10px;">
+            <span class="lang-en">Select Payment Method</span>
+            <span class="lang-id">Pilih Metode Pembayaran</span>
+        </h3>
+
+        <!-- Payment Method Buttons -->
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <button onclick="selectPay('bank')" 
+                style="flex: 1; padding: 12px; border: 1px solid #888; background: #fff; border-radius: 8px; cursor: pointer;">
+                <span class="lang-en">Bank Transfer</span>
+                <span class="lang-id">Transfer Bank</span>
+            </button>
+
+            <button onclick="selectPay('qris')" 
+                style="flex: 1; padding: 12px; border: 1px solid #888; background: #fff; border-radius: 8px; cursor: pointer;">
+                QRIS
+            </button>
+        </div>
+
+        <!-- Payment Preview -->
+         <div id="paymentPreview" style="display:none; text-align:center;">
+
+        <img id="payImg" src="" style="width:200px; margin-bottom:10px;">
+
+        <p id="paymentLabel" style="margin:0; font-weight:bold;"></p>
+
+        <table style="margin:auto;">
+    <tr>
+        <td style="padding:5px; text-align:center;">
+
+            <span id="paymentNumber" style="font-size:18px;"></span>
+
+        </td>
+
+        <td style="padding:5px; text-align:center;">
+
+            <span onclick="copyNumber()" 
+                style="cursor:pointer; user-select:none;">
+                <img src="img/cc/copy.png" style="width:22px;">
+            </span>
+
+        </td>
+    </tr>
+</table>
+
+    </div>
+
+        <!-- Final Button -->
+        <button style="width: 100%; padding: 15px; background: black; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer;">
+            <span class="lang-en">Pay Now</span>
+            <span class="lang-id">Bayar Sekarang</span>
+        </button>
+
+    </div>
+</section>
+
+<script>
+let currentNumber = "";
+
+function selectPay(type) {
+    const preview = document.getElementById('paymentPreview');
+    const img = document.getElementById('payImg');
+    const label = document.getElementById('paymentLabel');
+    const number = document.getElementById('paymentNumber');
+
+    preview.style.display = "block";
+
+    if (type === 'bank') {
+        img.src = "img/cc/banktransfer.webp";
+        label.textContent = "Bank Transfer";
+        currentNumber = "1100 9112001";
+    } else {
+        img.src = "img/cc/qris.webp";
+        label.textContent = "QRIS";
+        currentNumber = "0 301 019 6559";
+    }
+
+    number.textContent = currentNumber;
+}
+
+function copyNumber() {
+    navigator.clipboard.writeText(currentNumber);
+    alert("Copied: " + currentNumber);
+}
+</script>
+
+
+    <!-- Admin Page -->
+    <section class="page" id="adminPage">
+        <div class="container">
+            <div class="section-title">
+                <h2><span class="lang-en">Admin Dashboard</span><span class="lang-id">Dashboard Admin</span></h2>
+            </div>
+            <div class="admin-section">
+                <h3><span class="lang-en">Customer Messages</span><span class="lang-id">Pesan Pelanggan</span></h3>
+                <div class="message-list" id="messageList">
+                    <!-- Messages will be loaded here -->
+                </div>
+            </div>
+            <div class="admin-section">
+                <h3><span class="lang-en">Bookmarked Orders</span><span class="lang-id">Pesanan yang Ditandai</span></h3>
+                <div class="bookmark-list" id="bookmarkList">
+                    <!-- Bookmarks will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3><span class="lang-en">BatikCraft</span><span class="lang-id">BatikCraft</span></h3>
+                <p><span class="lang-en">Preserving the ancient art of batik through authentic craftsmanship and contemporary design.</span><span class="lang-id">Melestarikan seni batik kuno melalui kerajinan otentik dan desain kontemporer.</span></p>
+            </div>
+            <div class="footer-column">
+                <h3><span class="lang-en">Quick Links</span><span class="lang-id">Tautan Cepat</span></h3>
+                <ul class="footer-links">
+                    <li><a class="nav-link" data-page="home" href="#"><span class="lang-en">Home</span><span class="lang-id">Beranda</span></a></li>
+                    <li><a class="nav-link" data-page="products" href="#"><span class="lang-en">Products</span><span class="lang-id">Produk</span></a></li>
+                    <li><a class="nav-link" data-page="about" href="#"><span class="lang-en">About Us</span><span class="lang-id">Tentang Kami</span></a></li>
+                    <li><a class="nav-link" data-page="contact" href="#"><span class="lang-en">Contact</span><span class="lang-id">Kontak</span></a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3><span class="lang-en">Categories</span><span class="lang-id">Kategori</span></h3>
+                <ul class="footer-links">
+                    <li><a class="nav-link footer-filter" data-category="clothing" data-page="products" href="#"><span class="lang-en">Clothing</span><span class="lang-id">Pakaian</span></a></li>
+                    <li><a class="nav-link footer-filter" data-category="accessories" data-page="products" href="#"><span class="lang-en">Accessories</span><span class="lang-id">Aksesoris</span></a></li>
+                    <li><a class="nav-link footer-filter" data-category="home" data-page="products" href="#"><span class="lang-en">Home Decor</span><span class="lang-id">Dekorasi Rumah</span></a></li>
+                    <li><a class="nav-link footer-filter" data-category="special" data-page="products" href="#"><span class="lang-en">Special Collections</span><span class="lang-id">Koleksi Spesial</span></a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3><span class="lang-en">Contact Info</span><span class="lang-id">Info Kontak</span></h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> <span class="lang-en">Jakarta, Indonesia</span><span class="lang-id">Jakarta, Indonesia</span></li>
+                    <li><i class="fas fa-phone"></i><a href="https://web.whatsapp.com/"><span class="lang-en">+62 123 456 7890</span><span class="lang-id">+62 123 456 7890</span></a></li>
+                    <li><i class="fas fa-envelope"></i><a href="mailto:info@batikcraft.com"><span class="lang-en">info@batikcraft.com</span><span class="lang-id">info@batikcraft.com</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="copyright">
-            <p>&copy; 2023 BatikCraft. All rights reserved.</p>
+            <p><span class="lang-en">© 2023 BatikCraft. All rights reserved.</span><span class="lang-id">© 2023 BatikCraft. Hak cipta dilindungi.</span></p>
         </div>
     </div>
 </footer>
+<script>
+	
+    // Data produk
+    const products = [
+    {
+        id: 1,
+        name: "Traditional Sarong",
+	name_id: "Sarung Batik",
+        category: "clothing",
+        price: 45.99,
+        image: "img/produk/batikSarung.webp",
+        description_en: "Handcrafted traditional batik sarong with classic patterns suitable for formal or casual occasions.",
+        description_id: "Sarung batik tradisional buatan tangan dengan motif klasik, cocok untuk acara formal maupun santai."
+    },
+    {
+        id: 2,
+        name: "Batik Scarf",
+	name_id: "Syal Batik",
+        category: "accessories",
+        price: 22.50,
+        image: "img/produk/batikScarf.webp",
+        description_en: "Soft batik scarf made with natural dyes, perfect for stylish daily wear.",
+        description_id: "Syall batik lembut dengan pewarna alami, nyaman dipakai dan cocok untuk berbagai gaya."
+    },
+    {
+        id: 3,
+        name: "Decorative Wall Hanging",
+	name_id: "Dekorasi Gantung",
+        category: "home",
+        price: 35.00,
+        image: "img/produk/batikWalldecor.webp",
+        description_en: "Artistic batik wall hanging that adds ethnic charm to your home interior.",
+        description_id: "Dekorasi dinding batik artistik yang menambahkan nuansa etnik pada interior rumah Anda."
+    },
+    {
+        id: 4,
+        name: "Batik Shirt",
+	name_id: "Kaos Batik",
+        category: "clothing",
+        price: 55.00,
+        image: "img/produk/batikShirt.webp",
+        description_en: "Premium batik shirt with refined craftsmanship, ideal for formal events.",
+        description_id: "Kemeja batik premium dengan kualitas jahitan tinggi, ideal untuk acara resmi."
+    },
+    {
+        id: 5,
+        name: "Handbag Set",
+	name_id: "Tas Tangan",
+        category: "accessories",
+        price: 65.99,
+        image: "img/produk/batikBag.webp",
+        description_en: "Elegant batik handbag set suitable for daily use or formal occasions.",
+        description_id: "Set handbag batik elegan, cocok digunakan untuk aktivitas sehari-hari maupun acara formal."
+    },
+    {
+        id: 6,
+        name: "Table Runner",
+	name_id: "Taplak Meja",
+        category: "home",
+        price: 28.75,
+        image: "img/produk/batikTablerunner.webp",
+        description_en: "Beautiful batik table runner that enhances your dining room decoration.",
+        description_id: "Table runner batik yang mempercantik dekorasi ruang makan Anda."
+    },
+    {
+        id: 7,
+        name: "Batik Dress",
+	name_id: "Gaun Batik",
+        category: "clothing",
+        price: 75.00,
+        image: "img/produk/batikDress.webp",
+        description_en: "Elegant batik dress combining modern and traditional patterns.",
+        description_id: "Gaun batik elegan yang memadukan motif modern dan tradisional."
+    },
+    {
+        id: 8,
+        name: "Cushion Covers",
+	name_id: "Sarung Bantal",
+        category: "home",
+        price: 19.99,
+        image: "img/produk/batikCushion.webp",
+        description_en: "Handmade batik cushion covers perfect for artistic interior decorations.",
+        description_id: "Sarung bantal batik handmade yang cocok untuk dekorasi interior artistik."
+    }
+];
 
 
-    <script>
-        // Sample product data
-        const products = [
-            {
-                id: 1,
-                name: "Traditional Sarong",
-                category: "clothing",
-                price: 45.99,
-                image: "img/produk/batikSarung.webp"
-            },
-            {
-                id: 2,
-                name: "Batik Scarf",
-                category: "accessories",
-                price: 22.50,
-                image: "img/produk/batikScarf.webp"
-            },
-            {
-                id: 3,
-                name: "Decorative Wall Hanging",
-                category: "home",
-                price: 35.00,
-                image: "img/produk/batikWalldecor.webp"
-            },
-            {
-                id: 4,
-                name: "Batik Shirt",
-                category: "clothing",
-                price: 55.00,
-                image: "img/produk/batikShirt.webp"
-            },
-            {
-                id: 5,
-                name: "Handbag Set",
-                category: "accessories",
-                price: 65.99,
-                image: "img/produk/batikBag.webp"
-            },
-            {
-                id: 6,
-                name: "Table Runner",
-                category: "home",
-                price: 28.75,
-                image: "img/produk/batikTablerunner.webp"
-            },
-            {
-                id: 7,
-                name: "Batik Dress",
-                category: "clothing",
-                price: 75.00,
-                image: "img/produk/batikDress.webp"
-            },
-            {
-                id: 8,
-                name: "Cushion Covers",
-                category: "home",
-                price: 19.99,
-                image: "img/produk/batikCushion.webp"
-            }
-        ];
 
-        // DOM Elements
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const cartCount = document.querySelector('.cart-count');
-        const bookmarkCount = document.querySelector('.bookmark-count') || document.querySelectorAll('.cart-count')[1];
-        const contactForm = document.getElementById('contactForm');
-        const searchInput = document.getElementById('searchInput');
-        const searchIcon = document.getElementById('searchIcon');
-        const searchBar = document.getElementById('searchBar');
+    // Konstanta
+    const EXCHANGE_RATE = 15000; // 1 USD = 15,000 IDR
 
-        // State
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-        let messages = JSON.parse(localStorage.getItem('messages')) || [];
+    // State aplikasi
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+    let messages = JSON.parse(localStorage.getItem('messages')) || [];
+    let currentLanguage = localStorage.getItem('lang') || 'id';
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+    // ===== FUNGSI BAHASA =====
+    function setLanguage(lang) {
+        currentLanguage = lang;
+        
+        // Sembunyikan semua elemen bahasa terlebih dahulu
+        document.querySelectorAll('.lang-en, .lang-id').forEach(el => {
+    	el.style.display = 'none';
+	});
+        
+        // Tampilkan hanya elemen dengan bahasa yang dipilih
+        document.querySelectorAll('.lang-' + lang).forEach(el => {
+            el.style.display = '';
+        });
+        
+        // Simpan preferensi
+        localStorage.setItem('lang', lang);
+        
+        // Update semua tampilan yang bergantung pada bahasa
+        updateAllLanguageDependentContent();
+    }
+
+    function updateAllLanguageDependentContent() {
+        // Update cart jika sedang dilihat
+        if (document.getElementById('cartPage').classList.contains('active')) {
+            renderCart();
+        }
+        
+        // Update wishlist jika sedang dilihat
+        if (document.getElementById('bookmarksPage').classList.contains('active')) {
+            renderBookmarkedProducts();
+        }
+        
+        // Update produk jika sedang dilihat
+        if (document.getElementById('productsPage').classList.contains('active')) {
             renderProducts();
-            updateCartCount();
-            updateBookmarkCount();
-            renderMessages();
-            renderBookmarks();
+        }
+    }
 
-            // Load featured products
-            const featuredProducts = document.getElementById('featuredProducts');
-            if (featuredProducts) {
-                const featured = products.slice(0, 4);
-                featuredProducts.innerHTML = generateProductHTML(featured);
-                attachProductEventListeners();
+    function getTranslation(key) {
+        const translations = {
+            'added_to_cart': {
+                'en': 'added to cart!',
+                'id': 'ditambahkan ke keranjang!'
+            },
+            'remove_from_cart': {
+                'en': 'Remove from cart?',
+                'id': 'Hapus dari keranjang?'
+            },
+            'removed_from_cart': {
+                'en': 'removed from cart',
+                'id': 'dihapus dari keranjang'
+            },
+            'added_to_wishlist': {
+                'en': 'Added to wishlist',
+                'id': 'Ditambahkan ke daftar keinginan'
+            },
+            'removed_from_wishlist': {
+                'en': 'Removed from wishlist',
+                'id': 'Dihapus dari daftar keinginan'
+            },
+            'thank_you_message': {
+                'en': 'Thank you for your message! We will get back to you soon.',
+                'id': 'Terima kasih atas pesan Anda! Kami akan segera menghubungi Anda.'
+            }
+        };
+        
+        return translations[key] ? translations[key][currentLanguage] : key;
+    }
+
+    // ===== FUNGSI UTILITAS =====
+    function formatCurrency(amount, currency) {
+        if (currency === 'IDR') {
+            return 'Rp ' + Math.round(amount).toLocaleString('id-ID');
+        } else {
+            return '$' + amount.toFixed(2);
+        }
+    }
+
+    function convertPrice(price, currency) {
+        return currency === 'IDR' ? price * EXCHANGE_RATE : price;
+    }
+
+    function getCurrentCurrency() {
+        const currencySelect = document.getElementById('currencySelect');
+        return currencySelect ? currencySelect.value : 'USD';
+    }
+
+    // ===== FUNGSI MANAJEMEN STATE =====
+    function updateCartCount() {
+        const cartCountElements = document.querySelectorAll('.cart-count--cart');
+        cartCountElements.forEach(cartCount => {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+        });
+    }
+
+    function updateBookmarkCount() {
+        const bookmarkElements = document.querySelectorAll('.cart-count--bookmark');
+        bookmarkElements.forEach(el => {
+            el.textContent = bookmarks.length;
+        });
+    }
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function saveBookmarks() {
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    }
+
+    function saveMessages() {
+        localStorage.setItem('messages', JSON.stringify(messages));
+    }
+
+    // ===== FUNGSI PRODUK =====
+    function generateProductHTML(productsArray) {
+    return productsArray.map(product => `
+        <div class="product-card">
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <div class="product-info">
+                <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+                
+                <h3 class="product-name">
+		<span class="lang-en">${product.name}</span>
+		<span class="lang-id">${product.name_id}</span>
+		</h3>
+
+                <!-- Deskripsi dua bahasa -->
+                <p class="product-description">
+                    <span class="lang-en">${product.description_en}</span>
+                    <span class="lang-id">${product.description_id}</span>
+                </p>
+
+                <div class="product-price">$${product.price.toFixed(2)}</div>
+
+                <div class="product-actions">
+                    <button class="add-to-cart" data-id="${product.id}">
+                        <span class="lang-en">Add to Cart</span>
+                        <span class="lang-id">Tambah ke Keranjang</span>
+                    </button>
+                    <button class="bookmark ${isBookmarked(product.id) ? 'bookmarked' : ''}" data-id="${product.id}">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+	}
+
+
+
+    function attachProductEventListeners() {
+        // Event delegation untuk semua produk
+        document.addEventListener('click', function(e) {
+            // Tombol add to cart
+            if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+                const button = e.target.classList.contains('add-to-cart') ? e.target : e.target.closest('.add-to-cart');
+                const productId = parseInt(button.getAttribute('data-id'));
+                addToCart(productId);
+            }
+            
+            // Tombol bookmark
+            if (e.target.classList.contains('bookmark') || e.target.closest('.bookmark')) {
+                const button = e.target.classList.contains('bookmark') ? e.target : e.target.closest('.bookmark');
+                const productId = parseInt(button.getAttribute('data-id'));
+                toggleBookmark(productId);
             }
         });
+    }
 
-        // Event Listeners
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
+    function renderProducts(productsToShow = products) {
+        const productGrid = document.getElementById('productGrid');
+        if (productGrid) {
+            productGrid.innerHTML = generateProductHTML(productsToShow);
+        }
+    }
+
+    function filterProducts(category) {
+        const filtered = category === 'all' ? products : products.filter(product => product.category === category);
+        renderProducts(filtered);
+    }
+
+    function searchProducts(keyword) {
+        if (!keyword) {
+            renderProducts();
+            return;
+        }
+        
+        const filtered = products.filter(product => 
+            product.name.toLowerCase().includes(keyword.toLowerCase()) ||
+            product.category.toLowerCase().includes(keyword.toLowerCase())
+        );
+        renderProducts(filtered);
+    }
+
+    // ===== FUNGSI KERANJANG BELANJA =====
+    function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                ...product,
+                quantity: 1
             });
         }
+        
+        saveCart();
+        updateCartCount();
+        
+        // Feedback untuk pengguna
+        const message = `${product.name} ${getTranslation('added_to_cart')}`;
+        showToast(message);
+    }
 
+    function removeFromCart(productId) {
+        const item = cart.find(item => item.id === productId);
+        if (item) {
+            const message = `${getTranslation('remove_from_cart')}`;
+            
+            if (confirm(message)) {
+                cart = cart.filter(item => item.id !== productId);
+                saveCart();
+                updateCartCount();
+                renderCart();
+                
+                const successMessage = `${item.name} ${getTranslation('removed_from_cart')}`;
+                showToast(successMessage);
+            }
+        }
+    }
+
+    function updateQuantity(productId, change) {
+        const item = cart.find(item => item.id === productId);
+        if (item) {
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                saveCart();
+                renderCart();
+            }
+        }
+    }
+
+    function renderCart() {
+        const cartItems = document.getElementById('cartItems');
+        const subtotalElement = document.getElementById('subtotal');
+        const shippingElement = document.getElementById('shipping');
+        const totalElement = document.getElementById('total');
+        const currency = getCurrentCurrency();
+
+        if (!cartItems) return;
+
+        if (cart.length === 0) {
+            cartItems.innerHTML = `
+                <div class="empty-cart" style="text-align: center; padding: 60px 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <i class="fas fa-shopping-cart" style="font-size: 3rem; color: #ddd; margin-bottom: 20px;"></i>
+                    <p style="font-size: 1.2rem; color: #666; margin-bottom: 10px;">
+                        <span>0</span>
+                    </p>
+                </div>
+            `;
+
+            // Reset summary ketika keranjang kosong
+            if (subtotalElement) subtotalElement.textContent = formatCurrency(0, currency);
+            if (shippingElement) shippingElement.textContent = formatCurrency(0, currency);
+            if (totalElement) totalElement.textContent = formatCurrency(0, currency);
+        } else {
+            let subtotalUSD = 0;
+
+            cartItems.innerHTML = cart.map(item => {
+                // Hitung subtotal dalam USD untuk konsistensi
+                const itemTotalUSD = item.price * item.quantity;
+                subtotalUSD += itemTotalUSD;
+
+                // Konversi ke mata uang yang dipilih untuk display
+                const displayPrice = convertPrice(item.price, currency);
+                const displayTotal = convertPrice(itemTotalUSD, currency);
+
+                return `
+                    <div class="cart-item" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-name">${item.name}</h3>
+                            <p class="cart-item-price">${formatCurrency(displayPrice, currency)} 
+                                <span>per item</span>
+                            </p>
+                            <p class="item-total" style="font-weight: bold; color: var(--primary);">
+                                ${formatCurrency(displayTotal, currency)}
+                            </p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus" data-id="${item.id}" type="button">-</button>
+                                <span class="quantity-display">${item.quantity}</span>
+                                <button class="quantity-btn plus" data-id="${item.id}" type="button">+</button>
+                            </div>
+                            <button class="remove-item" data-id="${item.id}" type="button">
+                                <i class="fas fa-trash"></i>
+                            
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Hitung total dengan konversi mata uang
+            const subtotal = convertPrice(subtotalUSD, currency);
+            const shipping = convertPrice(10, currency);
+            const total = subtotal + shipping;
+
+            // Update summary
+            if (subtotalElement) subtotalElement.textContent = formatCurrency(subtotal, currency);
+            if (shippingElement) shippingElement.textContent = formatCurrency(shipping, currency);
+            if (totalElement) totalElement.textContent = formatCurrency(total, currency);
+        }
+
+        // Terapkan bahasa setelah render
+        setLanguage(currentLanguage);
+        updateCartCount();
+    }
+
+    // ===== FUNGSI BOOKMARK =====
+    function isBookmarked(productId) {
+        return bookmarks.includes(productId);
+    }
+
+    function toggleBookmark(productId) {
+        const index = bookmarks.indexOf(productId);
+        const button = document.querySelector(`.bookmark[data-id="${productId}"]`);
+        
+        if (index > -1) {
+            bookmarks.splice(index, 1);
+            if (button) button.classList.remove('bookmarked');
+        } else {
+            bookmarks.push(productId);
+            if (button) button.classList.add('bookmarked');
+        }
+        
+        saveBookmarks();
+        updateBookmarkCount();
+        // Re-render product lists / wishlist if currently visible
+        renderProducts();
+        if (document.getElementById('bookmarksPage').classList.contains('active')) {
+            renderBookmarkedProducts();
+        }
+        
+        const product = products.find(p => p.id === productId);
+        const message = index > -1 ? getTranslation('removed_from_wishlist') : getTranslation('added_to_wishlist');
+        showToast(message);
+    }
+
+    function renderBookmarkedProducts() {
+        const bookmarksGrid = document.getElementById('bookmarksGrid');
+        if (bookmarksGrid) {
+            const bookmarkedProducts = products.filter(product => bookmarks.includes(product.id));
+            if (bookmarkedProducts.length === 0) {
+                bookmarksGrid.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <p>
+                            <span class="lang-en">No items in your wishlist</span>
+                            <span class="lang-id">Tidak ada item dalam daftar keinginan</span>
+                        </p>
+                    </div>
+                `;
+            } else {
+                bookmarksGrid.innerHTML = generateProductHTML(bookmarkedProducts);
+            }
+        }
+        // Ensure UI counts and language are up-to-date
+        setLanguage(currentLanguage);
+        updateBookmarkCount();
+    }
+
+    // ===== FUNGSI PESAN =====
+    function renderMessages() {
+        const messageList = document.getElementById('messageList');
+        if (messageList) {
+            if (messages.length === 0) {
+                messageList.innerHTML = `
+                    <p>
+                        <span class="lang-en">No messages yet</span>
+                        <span class="lang-id">Belum ada pesan</span>
+                    </p>
+                `;
+            } else {
+                messageList.innerHTML = messages.map(message => `
+                    <div class="message-item">
+                        <div class="message-header">
+                            <span class="message-name">${message.name}</span>
+                            <span class="message-date">${message.date}</span>
+                        </div>
+                        <p><strong>${message.subject}</strong></p>
+                        <p>${message.message}</p>
+                        <p><small>${message.email}</small></p>
+                    </div>
+                `).join('');
+            }
+        }
+    }
+
+    function renderBookmarksAdmin() {
+        const bookmarkList = document.getElementById('bookmarkList');
+        if (bookmarkList) {
+            if (bookmarks.length === 0) {
+                bookmarkList.innerHTML = `
+                    <p>
+                        <span class="lang-en">No bookmarks yet</span>
+                        <span class="lang-id">Belum ada penanda</span>
+                    </p>
+                `;
+            } else {
+                const bookmarkedProducts = products.filter(product => bookmarks.includes(product.id));
+                bookmarkList.innerHTML = bookmarkedProducts.map(product => `
+                    <div class="bookmark-item">
+                        <p><strong><span class="lang-en">${product.name}</span>
+		<span class="lang-id">${product.name_id}</span></strong> - $${product.price.toFixed(2)}</p>
+                        <p>
+                            <span class="lang-en">Category: ${product.category}</span>
+                            <span class="lang-id">Kategori: ${product.category}</span>
+                        </p>
+                    </div>
+                `).join('');
+            }
+        }
+    }
+
+    // ===== FUNGSI NAVIGASI =====
+    function showPage(pageName) {
+        // Sembunyikan semua halaman
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // Tampilkan halaman yang dipilih
+        const targetPage = document.getElementById(pageName + 'Page');
+        if (targetPage) {
+            targetPage.classList.add('active');
+        }
+        
+        // Update navigasi aktif
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        document.querySelectorAll(`[data-page="${pageName}"]`).forEach(link => {
+            link.classList.add('active');
+        });
+        
+        // Tutup menu mobile
+        const navMenu = document.getElementById('navMenu');
+        if (navMenu) {
+            navMenu.classList.remove('active');
+        }
+        
+        // Render konten spesifik untuk halaman
+        if (pageName === 'products') {
+            renderProducts();
+        } else if (pageName === 'cart') {
+            renderCart();
+        } else if (pageName === 'bookmarks') {
+            renderBookmarkedProducts();
+        } else if (pageName === 'admin') {
+            renderMessages();
+            renderBookmarksAdmin();
+        }
+        
+        // Terapkan bahasa
+        setLanguage(currentLanguage);
+    }
+
+    // ===== FUNGSI UTILITAS TAMBAHAN =====
+    function showToast(message) {
+        // Buat elemen toast sederhana
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            z-index: 10000;
+            animation: fadeInOut 3s ease-in-out;
+            font-weight: 500;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            if (toast.parentNode) {
+                document.body.removeChild(toast);
+            }
+        }, 3000);
+    }
+
+    // Inisialisasi aplikasi
+    document.addEventListener('DOMContentLoaded', function() {
+        // Setup bahasa
+        const defaultLang = localStorage.getItem('lang') || 'id';
+        const langSelect = document.getElementById('langSelect');
+        if (langSelect) {
+            langSelect.value = defaultLang;
+            setLanguage(defaultLang);
+            langSelect.addEventListener('change', function() {
+                setLanguage(this.value);
+            });
+        }
+        
+        // Setup navigasi
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.getAttribute('data-page');
+                showPage(page);
+            });
+        });
+        
+        // Setup filter produk
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                const category = this.getAttribute('data-category');
+                filterProducts(category);
+            });
+        });
+        
+        // Setup pencarian
+        const searchInput = document.getElementById('searchInput');
         if (searchInput) {
             searchInput.addEventListener('input', () => {
                 const keyword = searchInput.value.trim();
@@ -1137,28 +1827,29 @@
                 searchProducts(keyword);
             });
         }
-
-        if (navLinks) {
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = this.getAttribute('data-page');
-                    showPage(page);
-                });
+        
+        const searchIcon = document.getElementById('searchIcon');
+        const searchBar = document.getElementById('searchBar');
+        if (searchIcon && searchBar) {
+            searchIcon.addEventListener('click', () => {
+                searchBar.style.display = searchBar.style.display === 'none' ? 'block' : 'none';
+                if (searchBar.style.display === 'block') {
+                    searchInput.focus();
+                }
             });
         }
-
-        if (filterButtons) {
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    const category = this.getAttribute('data-category');
-                    filterProducts(category);
-                });
+        
+        // Setup menu hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
             });
         }
-
+        
+        // Setup form kontak
+        const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -1177,371 +1868,128 @@
                 };
                 
                 messages.push(newMessage);
-                localStorage.setItem('messages', JSON.stringify(messages));
+                saveMessages();
                 
-                alert('Thank you for your message! We will get back to you soon.');
+                const successMessage = document.querySelector('.lang-en').style.display !== 'none'
+                    ? 'Thank you for your message! We will get back to you soon.'
+                    : 'Terima kasih atas pesan Anda! Kami akan segera menghubungi Anda.';
+                alert(successMessage);
                 contactForm.reset();
                 renderMessages();
             });
         }
-
-        if (searchIcon && searchBar) {
-            searchIcon.addEventListener('click', () => {
-                if (searchBar.style.display === 'none' || searchBar.style.display === '') {
-                    searchBar.style.display = 'block';
-                    searchInput.focus();
-                } else {
-                    searchBar.style.display = 'none';
-                }
-            });
-        }
-
-        // Functions
-        function showPage(pageName) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            const targetPage = document.getElementById(pageName + 'Page');
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            // Update active nav link
-            navLinks.forEach(link => {
-                if (link.getAttribute('data-page') === pageName) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-            
-            // Close mobile menu
-            if (navMenu) {
-                navMenu.classList.remove('active');
-            }
-            
-            // Render specific content for pages
-            if (pageName === 'products') {
-                renderProducts();
-            } else if (pageName === 'cart') {
-                renderCart();
-            } else if (pageName === 'bookmarks') {
-                renderBookmarkedProducts();
-            }
-        }
-
-        function renderProducts(productsToShow = products) {
-            const productGrid = document.getElementById('productGrid');
-            if (productGrid) {
-                productGrid.innerHTML = generateProductHTML(productsToShow);
-                attachProductEventListeners();
-            }
-        }
-
-        function generateProductHTML(productsArray) {
-            return productsArray.map(product => `
-                <div class="product-card">
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
-                    <div class="product-info">
-                        <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
-                        <h3 class="product-name">${product.name}</h3>
-                        <div class="product-price">$${product.price.toFixed(2)}</div>
-                        <div class="product-actions">
-                            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
-                            <button class="bookmark ${isBookmarked(product.id) ? 'bookmarked' : ''}" data-id="${product.id}">
-                                <i class="fas fa-bookmark"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function attachProductEventListeners() {
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    addToCart(productId);
-                });
-            });
-
-            document.querySelectorAll('.bookmark').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    toggleBookmark(productId);
-                });
-            });
-        }
-
-        function filterProducts(category) {
-            if (category === 'all') {
-                renderProducts();
-            } else {
-                const filtered = products.filter(product => product.category === category);
-                renderProducts(filtered);
-            }
-        }
-
-        function searchProducts(keyword) {
-            if (!keyword) {
-                renderProducts();
-                return;
-            }
-            
-            const filtered = products.filter(product => 
-                product.name.toLowerCase().includes(keyword.toLowerCase()) ||
-                product.category.toLowerCase().includes(keyword.toLowerCase())
-            );
-            renderProducts(filtered);
-        }
-
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    ...product,
-                    quantity: 1
-                });
-            }
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            alert(`${product.name} added to cart!`);
-        }
-
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            renderCart();
-        }
-
-        function updateQuantity(productId, change) {
-            const item = cart.find(item => item.id === productId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    removeFromCart(productId);
-                } else {
-                    localStorage.setItem('cart', JSON.stringify(cart));
-                    renderCart();
-                }
-            }
-        }
-
-        function updateCartCount() {
-            if (cartCount) {
-                const count = cart.reduce((total, item) => total + item.quantity, 0);
-                cartCount.textContent = count;
-            }
-        }
-
-        function renderCart() {
-            const cartItems = document.getElementById('cartItems');
-            const subtotalElement = document.getElementById('subtotal');
-            const totalElement = document.getElementById('total');
-            
-            if (!cartItems) return;
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p>Your cart is empty</p>';
-                if (subtotalElement) subtotalElement.textContent = '$0.00';
-                if (totalElement) totalElement.textContent = '$0.00';
-                return;
-            }
-            
-            let subtotal = 0;
-            
-            cartItems.innerHTML = cart.map(item => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                
-                return `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                        <div class="cart-item-details">
-                            <h3 class="cart-item-name">${item.name}</h3>
-                            <p class="cart-item-price">$${item.price.toFixed(2)} each</p>
-                        </div>
-                        <div class="cart-item-actions">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus" data-id="${item.id}">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="quantity-btn plus" data-id="${item.id}">+</button>
-                            </div>
-                            <button class="remove-item" data-id="${item.id}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            
-            const total = subtotal + 10; // Shipping cost
-            
-            if (subtotalElement) subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-            if (totalElement) totalElement.textContent = `$${total.toFixed(2)}`;
-            
-            // Attach event listeners for cart actions
-            document.querySelectorAll('.minus').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    updateQuantity(productId, -1);
-                });
-            });
-            
-            document.querySelectorAll('.plus').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    updateQuantity(productId, 1);
-                });
-            });
-            
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    removeFromCart(productId);
-                });
-            });
-        }
-
-        function toggleBookmark(productId) {
-            const index = bookmarks.indexOf(productId);
-            const button = document.querySelector(`.bookmark[data-id="${productId}"]`);
-            
-            if (index > -1) {
-                bookmarks.splice(index, 1);
-                if (button) button.classList.remove('bookmarked');
-            } else {
-                bookmarks.push(productId);
-                if (button) button.classList.add('bookmarked');
-            }
-            
-            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-            updateBookmarkCount();
-        }
-
-        function isBookmarked(productId) {
-            return bookmarks.includes(productId);
-        }
-
-        function updateBookmarkCount() {
-            if (bookmarkCount) {
-                const count = bookmarks.length;
-                bookmarkCount.textContent = count;
-            }
-        }
-
-        function renderBookmarkedProducts() {
-            const bookmarksGrid = document.getElementById('bookmarksGrid');
-            if (bookmarksGrid) {
-                const bookmarkedProducts = products.filter(product => bookmarks.includes(product.id));
-                if (bookmarkedProducts.length === 0) {
-                    bookmarksGrid.innerHTML = '<p>No items in your wishlist</p>';
-                } else {
-                    bookmarksGrid.innerHTML = generateProductHTML(bookmarkedProducts);
-                    attachProductEventListeners();
-                }
-            }
-        }
-
-        function renderMessages() {
-            const messageList = document.getElementById('messageList');
-            if (messageList) {
-                if (messages.length === 0) {
-                    messageList.innerHTML = '<p>No messages yet</p>';
-                } else {
-                    messageList.innerHTML = messages.map(message => `
-                        <div class="message-item">
-                            <div class="message-header">
-                                <span class="message-name">${message.name}</span>
-                                <span class="message-date">${message.date}</span>
-                            </div>
-                            <p><strong>${message.subject}</strong></p>
-                            <p>${message.message}</p>
-                            <p><small>${message.email}</small></p>
-                        </div>
-                    `).join('');
-                }
-            }
-        }
-
-        function renderBookmarks() {
-            const bookmarkList = document.getElementById('bookmarkList');
-            if (bookmarkList) {
-                if (bookmarks.length === 0) {
-                    bookmarkList.innerHTML = '<p>No bookmarks yet</p>';
-                } else {
-                    const bookmarkedProducts = products.filter(product => bookmarks.includes(product.id));
-                    bookmarkList.innerHTML = bookmarkedProducts.map(product => `
-                        <div class="bookmark-item">
-                            <p><strong>${product.name}</strong> - $${product.price.toFixed(2)}</p>
-                            <p>Category: ${product.category}</p>
-                            <button class="remove-bookmark" data-id="${product.id}">Remove</button>
-                        </div>
-                    `).join('');
-                    
-                    // Attach event listeners for remove bookmark buttons
-                    document.querySelectorAll('.remove-bookmark').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const productId = parseInt(this.getAttribute('data-id'));
-                            removeBookmark(productId);
-                        });
-                    });
-                }
-            }
-        }
-
-        // Event listeners untuk ikon di header
-        if (document.getElementById('cartIcon')) {
-            document.getElementById('cartIcon').addEventListener('click', () => {
+        
+        // Setup ikon header
+        const cartIcon = document.getElementById('cartIcon');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', () => {
                 showPage('cart');
-                renderCart();
             });
         }
-
-        if (document.getElementById('bookmarkIcon')) {
-            document.getElementById('bookmarkIcon').addEventListener('click', () => {
+        
+        const bookmarkIcon = document.getElementById('bookmarkIcon');
+        if (bookmarkIcon) {
+            bookmarkIcon.addEventListener('click', () => {
                 showPage('bookmarks');
-                renderBookmarkedProducts();
             });
         }
-
-        // Event listeners untuk filter di footer
+        
+        // Setup filter footer
         document.querySelectorAll('.footer-filter').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-
                 const category = this.getAttribute('data-category');
-
-                // buka halaman Products
                 showPage('products');
-
-                // beri delay kecil supaya halaman sudah muncul dulu
                 setTimeout(() => {
                     filterProducts(category);
-                    // aktifkan tombol filter yang sesuai
-                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                    filterButtons.forEach(btn => {
                         btn.classList.toggle('active', btn.dataset.category === category);
                     });
                 }, 50);
             });
         });
-
-        function removeBookmark(productId) {
-            bookmarks = bookmarks.filter(id => id !== productId);
-            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-            updateBookmarkCount();
-            renderBookmarkedProducts();
-            renderBookmarks();
+        
+        // Setup konversi mata uang
+        const currencySelect = document.getElementById('currencySelect');
+        if (currencySelect) {
+            currencySelect.addEventListener('change', function() {
+                renderCart();
+            });
         }
+        
+        // Event delegation untuk keranjang
+        document.addEventListener('click', function(e) {
+            // Tombol minus
+            if (e.target.classList.contains('minus') || e.target.closest('.minus')) {
+                const button = e.target.classList.contains('minus') ? e.target : e.target.closest('.minus');
+                const productId = parseInt(button.getAttribute('data-id'));
+                updateQuantity(productId, -1);
+            }
+            
+            // Tombol plus
+            if (e.target.classList.contains('plus') || e.target.closest('.plus')) {
+                const button = e.target.classList.contains('plus') ? e.target : e.target.closest('.plus');
+                const productId = parseInt(button.getAttribute('data-id'));
+                updateQuantity(productId, 1);
+            }
+            
+            // Tombol remove
+            if (e.target.classList.contains('remove-item') || e.target.closest('.remove-item')) {
+                const button = e.target.classList.contains('remove-item') ? e.target : e.target.closest('.remove-item');
+                const productId = parseInt(button.getAttribute('data-id'));
+                removeFromCart(productId);
+            }
+        });
+        
+        // Load data awal
+        updateCartCount();
+        updateBookmarkCount();
+        
+        // Load produk unggulan
+        const featuredProducts = document.getElementById('featuredProducts');
+        if (featuredProducts) {
+            const featured = products.slice(0, 4);
+            featuredProducts.innerHTML = generateProductHTML(featured);
+        }
+        
+        // Setup event listeners produk
+        attachProductEventListeners();
+        
+        // Tampilkan halaman home secara default
+        showPage('home');
+    });
+
+    // Tambahkan CSS untuk animasi toast
+    const toastStyles = `
+        <style>
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateY(20px); }
+                20% { opacity: 1; transform: translateY(0); }
+                80% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(20px); }
+            }
+        </style>
+    `;
+    document.head.insertAdjacentHTML('beforeend', toastStyles);
+document.addEventListener("click", function(e) {
+    if (e.target.id === "checkoutBtn") {
+
+        // Sembunyikan semua ".page"
+        document.querySelectorAll(".page").forEach(page => {
+            page.style.display = "none";
+        });
+
+        // Tampilkan checkout section
+        const checkoutPage = document.getElementById("checkOut");
+        if (checkoutPage) {
+            checkoutPage.style.display = "block";
+        }
+
+        // Terapkan bahasa
+        setLanguage(currentLanguage);
+    }
+});
+
 </script>
 </body>
 </html>
